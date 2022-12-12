@@ -25,7 +25,7 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var psychEngineVersion:String = '1.0.0'; //This is also used for Discord RPC
+	public static var psychEngineVersion:String = '0.6.3'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -36,7 +36,7 @@ class MainMenuState extends MusicBeatState
 		'story_mode',
 		'freeplay',
 		//#if MODS_ALLOWED 'mods', #end
-    //#if ACHIEVEMENTS_ALLOWED 'awards', #end
+		//#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
 		#if !switch 'Discord', #end
 		'options'
@@ -46,6 +46,7 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
 	var debugKeys:Array<FlxKey>;
+	var char:FlxSprite;
 
 	override function create()
 	{
@@ -119,7 +120,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			//menuItem.screenCenter(X);
-			menuItem.x = 200;
+			menuItem.x = 150;
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -131,7 +132,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs DnB Cropland showdowns v" + psychEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs DandB Cropland Showdowns v" + psychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -158,6 +159,20 @@ class MainMenuState extends MusicBeatState
 		#end
 
 		super.create();
+		
+		switch(FlxG.random.int(1, 3))
+		{
+            case 1:
+              char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/Scr'));//put your cords and image here
+              char.frames = Paths.getSparrowAtlas('mainmenu/Scr');//here put the name of the xml
+              char.animation.addByPrefix('idleS', 'idle', 24, true);//on 'idle normal' change it to your xml one
+              char.animation.play('idleS');//you can rename the anim however you want to
+              char.scrollFactor.set();
+              FlxG.sound.play(Paths.sound('appear'), 2);
+              char.flipX = true;//this is for flipping it to look left instead of right you can make it however you want
+              char.antialiasing = ClientPrefs.globalAntialiasing;
+              add(char);
+		}
 	}
 
 	#if ACHIEVEMENTS_ALLOWED
