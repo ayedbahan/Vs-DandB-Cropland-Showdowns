@@ -38,7 +38,8 @@ class MainMenuState extends MusicBeatState
 		//#if MODS_ALLOWED 'mods', #end
 		//#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
-		#if !switch 'Discord', #end
+                //'Gallary',
+		//#if !switch 'Discord', #end
 		'options'
 	];
 
@@ -132,7 +133,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs DandB Cropland Showdowns v", 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs Amongus v", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -167,7 +168,17 @@ class MainMenuState extends MusicBeatState
 		switch(FlxG.random.int(1, 3))
 		{
             case 1:
-              char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/Scr'));//put your cords and image here
+              char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/amongusRed'));//put your cords and image here
+              char.frames = Paths.getSparrowAtlas('mainmenu/Scr');//here put the name of the xml
+              char.animation.addByPrefix('idleS', 'idle', 24, true);//on 'idle normal' change it to your xml one
+              char.animation.play('idleS');//you can rename the anim however you want to
+              char.scrollFactor.set();
+              FlxG.sound.play(Paths.sound('appear'), 2);
+              char.flipX = true;//this is for flipping it to look left instead of right you can make it however you want
+              char.antialiasing = ClientPrefs.globalAntialiasing;
+              add(char);
+	    case 2
+	      char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/amongusWhite'));//put your cords and image here
               char.frames = Paths.getSparrowAtlas('mainmenu/Scr');//here put the name of the xml
               char.animation.addByPrefix('idleS', 'idle', 24, true);//on 'idle normal' change it to your xml one
               char.animation.play('idleS');//you can rename the anim however you want to
@@ -265,6 +276,8 @@ class MainMenuState extends MusicBeatState
 									#end
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
+									case 'Gellary':
+										MusicBeatState.switchState(new GalleriesState());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
 									case 'options':
