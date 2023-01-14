@@ -177,7 +177,7 @@ class MainMenuState extends MusicBeatState
               char.flipX = true;//this is for flipping it to look left instead of right you can make it however you want
               char.antialiasing = ClientPrefs.globalAntialiasing;
               add(char);
-	    case 2
+	    case 2:
 	      char = new FlxSprite(820, 170).loadGraphic(Paths.image('mainmenu/amongusWhite'));//put your cords and image here
               char.frames = Paths.getSparrowAtlas('mainmenu/Scr');//here put the name of the xml
               char.animation.addByPrefix('idleS', 'idle', 24, true);//on 'idle normal' change it to your xml one
