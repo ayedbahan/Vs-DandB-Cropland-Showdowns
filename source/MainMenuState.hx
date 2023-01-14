@@ -39,7 +39,7 @@ class MainMenuState extends MusicBeatState
 		//#if ACHIEVEMENTS_ALLOWED 'awards', #end
 		'credits',
                 //'Gallary',
-		//#if !switch 'Discord', #end
+		#if !switch 'Discord', #end
 		'options'
 	];
 
@@ -133,7 +133,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs Amongus v", 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "Vs Amongus ", 20);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -276,8 +276,6 @@ class MainMenuState extends MusicBeatState
 									#end
 									case 'awards':
 										MusicBeatState.switchState(new AchievementsMenuState());
-									case 'Gellary':
-										MusicBeatState.switchState(new GalleriesState());
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
 									case 'options':
