@@ -392,7 +392,8 @@ class TitleState extends MusicBeatState
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
 		ngSpr.updateHitbox();
-		ngSpr.screenCenter(X);
+		//ngSpr.screenCenter(X);
+		ngSpr.x = 150;
 		ngSpr.antialiasing = ClientPrefs.globalAntialiasing;
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
@@ -586,7 +587,8 @@ class TitleState extends MusicBeatState
 	{
 		if(textGroup != null && credGroup != null) {
 			var coolText:Alphabet = new Alphabet(0, 0, text, true);
-			coolText.screenCenter(X);
+			//coolText.screenCenter(X);
+			coolText.x = 150;
 			coolText.y += (textGroup.length * 60) + 200 + offset;
 			credGroup.add(coolText);
 			textGroup.add(coolText);
@@ -631,7 +633,7 @@ class TitleState extends MusicBeatState
 					#if PSYCH_WATERMARKS
 					createCoolText(['Mods by'], 15);
 					#else
-					createCoolText(['DustTrustSansYT', 'More on Credits']);
+					createCoolText(['KiritoXkiller', 'More on Credits']);
 					#end
 				// credTextShit.visible = true;
 				case 4:
@@ -681,10 +683,10 @@ class TitleState extends MusicBeatState
 					addMoreText('Vs');
 				// credTextShit.visible = true;
 				case 15:
-					addMoreText('Dave and bambi');
+					addMoreText('Pibby');
 				// credTextShit.text += '\nNight';
 				case 16:
-					addMoreText('Cropland Showdowns'); // credTextShit.text += '\nFunkin';
+					addMoreText('Remix'); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
